@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+        <title>留言板 - YLeaveMsg</title>
+        <link rel="stylesheet" href="./assets/css/mdui.min.css">
+    </head>
+    <body>
+        <header>
+            <div class="mdui-appbar">
+                <div class="mdui-toolbar mdui-color-theme"><a href="javascript:void(0);" class="mdui-typo-title">留言板</a>
+                </div>
+            </div>
+        </header>
+        <main class="mdui-container" id="app">
+            <div class="mdui-card mdui-m-l-1 mdui-m-t-3" v-if="pages">
+                <div class="mdui-card-content">
+                    <div class="mdui-row">
+                        <div class="mdui-textfield mdui-textfield-floating-label"><label class="mdui-textfield-label">请输入你的名字！</label> <input class="mdui-textfield-input" type="text" v-model="model.name">
+                        </div>
+                    </div>
+                    <div class="mdui-row mdui-m-t-3">
+                        <div class="mdui-col-12 mdui-col-xs-6">
+                            <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" @click="query" :disabled="loading">查询留言</button>
+                        </div>
+                        <div class="mdui-col-12 mdui-col-xs-6">
+                            <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" @click="pages = !pages;">我要留言</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mdui-card mdui-m-l-1 mdui-m-t-3" v-if="!pages">
+                <div class="mdui-card-content">
+                    <div class="mdui-row">
+                        <div class="mdui-textfield mdui-textfield-floating-label"><label class="mdui-textfield-label">请输入你的名字！</label> <input class="mdui-textfield-input" type="text" v-model="model.name">
+                        </div>
+                        <div class="mdui-textfield mdui-textfield-floating-label"><label class="mdui-textfield-label">请输入留言内容！</label> <textarea class="mdui-textfield-input" v-model="model.content"></textarea>
+                        </div>
+                    </div>
+                    <div class="mdui-row mdui-m-t-3">
+                        <div class="mdui-col-12 mdui-col-xs-6">
+                            <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" @click="send" :disabled="loading">发布留言</button>
+                        </div>
+                        <div class="mdui-col-12 mdui-col-xs-6">
+                            <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" @click="pages = !pages;">查询留言</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mdui-card mdui-m-l-1 mdui-m-t-3" v-if="messages.length != 0">
+                <div class="mdui-card-content">
+                    <ul class="mdui-list mdui-list-dense">
+                        <li class="mdui-list-item mdui-ripple" v-for="(item, index) in messages">
+                            <div class="mdui-list-item-content">
+                              <div class="mdui-list-item-text mdui-list-item-two-line">
+                              {{ item }}
+                              </div>
+                            </div></li>
+                        <li class="mdui-divider"></li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <script src="./assets/js/mdui.min.js"></script>
+        <script src="./assets/js/vue.min.js"></script>
+        <script src="./assets/js/index.js"></script>
+    </body>
+</html>
